@@ -1,4 +1,6 @@
 minecode
 ========
 
-A collection of minecraft bukkit server Purugin plugin
+A collection of minecraft bukkit server Purugin plugins
+
+
