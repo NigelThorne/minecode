@@ -1,5 +1,6 @@
 require 'java'
 
+#Monkey patch Purugin to include the new event. Note: There is a simple way to do this now.
 module Purugin
   module Event
     # FIXME: This only handles normal priority.  Real fix is to generate these on demand versus up
