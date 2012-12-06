@@ -1,4 +1,4 @@
-# @@secret = "AIzaSyC9WJWahqesZMN7gnrbVRbJlvaarr29-NY"
+# @@secret = [Google translate key goes here]
 
 # require 'rubygems'
 # require 'httpclient'
