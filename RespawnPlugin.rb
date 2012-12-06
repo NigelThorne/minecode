@@ -1,3 +1,6 @@
+# Teleports you to a known location if you fall out of the world.
+# used in my world to drop you over the spawn, so you stuff drops there when you die.
+
 class RespawnPlugin
 	include Purugin::Plugin
 	description 'RespawnPlugin', 0.2
