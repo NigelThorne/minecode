@@ -9,28 +9,19 @@ module Purugin
     # front.  We can reify what we need.  This will also fix custom event types.    
 
     require 'jruby/core_ext' 
+    
 
+#    class PlayerReceiveNameTagEventListener
+#      include org.bukkit.event.Listener
+#      def initialize(&code); @code = code; end
+#      def on_event(event); @code.call(event); end
+#      add_method_signature 'on_event', [java.lang.Void::TYPE, org.kitteh.tag.PlayerReceiveNameTagEvent]
+#      add_method_annotation 'on_event', org.bukkit.event.EventHandler => {}
+#      become_java!
+#    end
+#    EVENT_NAME_TO_LISTENER[:player_receive_name_tag] = PlayerReceiveNameTagEventListener
 
-    class AsyncPlayerChatEventListener
-      include org.bukkit.event.Listener
-      def initialize(&code); @code = code; end
-      def on_event(event); @code.call(event); end
-      add_method_signature 'on_event', [java.lang.Void::TYPE, org.bukkit.event.player.AsyncPlayerChatEvent]
-      add_method_annotation 'on_event', org.bukkit.event.EventHandler => {}
-      become_java!
-    end
-    EVENT_NAME_TO_LISTENER[:async_player_chat] = AsyncPlayerChatEventListener
-
-
-    class PlayerReceiveNameTagEventListener
-      include org.bukkit.event.Listener
-      def initialize(&code); @code = code; end
-      def on_event(event); @code.call(event); end
-      add_method_signature 'on_event', [java.lang.Void::TYPE, org.kitteh.tag.PlayerReceiveNameTagEvent]
-      add_method_annotation 'on_event', org.bukkit.event.EventHandler => {}
-      become_java!
-    end
-    EVENT_NAME_TO_LISTENER[:player_receive_name_tag] = PlayerReceiveNameTagEventListener
+    define_event_listener('PlayerReceiveNameTagEvent', 'org.kitteh.tag')
 
   end
 end
@@ -50,7 +41,7 @@ class PurpleOpPlugin
   end
 
   def on_enable
-    @owners = (config.get!("purpleop.owners", "")).split(",")        
+    @owners = (config.get!("purpleop.owners", "nigelthorne")).split(",")        
     @moderator = (config.get!("purpleop.moderator", "")).split(",")        
     @donators = (config.get!("purpleop.donators", "")).split(",")
 
@@ -58,10 +49,10 @@ class PurpleOpPlugin
       e.format = "< #{color(player_color(e.player),"%1$s")} > %2$s"
     end
 
-    event(:player_receive_name_tag) do |e,*args|
-      col = player_color(e.named_player)
-      name = e.named_player.name
-      e.set_tag(color(col,name));
-    end
+#    event(:player_receive_name_tag) do |e,*args|
+#      col = player_color(e.named_player)
+#      name = e.named_player.name
+#      e.set_tag(color(col,name));
+#    end
   end
 end
